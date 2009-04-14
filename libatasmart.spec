@@ -1,0 +1,76 @@
+%define major 0
+%define libname %mklibname atasmart %{major}
+%define develname %mklibname -d atasmart
+
+Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
+Name:		libatasmart
+Version:	0.10
+Release:	%mkrel 1
+License:	LGPLv2+
+Group:		System/Libraries
+URL:		http://git.0pointer.de/?p=libatasmart.git;a=summary
+Source0:	http://0pointer.de/public/libatasmart-%{version}.tar.gz
+BuildRequires:	libudev-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+
+%description
+A small and lightweight parser library for ATA S.M.A.R.T. hard disk
+health monitoring.
+
+%package -n	%{libname}
+Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
+Group:		System/Libraries
+
+%description -n	%{libname}
+A small and lightweight parser library for ATA S.M.A.R.T. hard disk
+health monitoring.
+
+%package -n	%{develname}
+Summary:	Development Files for libatasmart Client Development
+Group:		Development/C
+
+%description -n	%{develname}
+Development files for libatasmart Client Development
+
+%prep
+
+%setup -q
+
+%build
+%configure2_5x \
+    --disable-static
+
+%make
+
+%install
+rm -rf %{buildroot}
+
+%makeinstall_std
+
+find %{buildroot} \( -name *.a -o -name *.la \) -exec rm {} \;
+
+%if %mdkversion < 200900
+%post -n %{libname} -p /sbin/ldconfig
+%endif
+
+%if %mdkversion < 200900
+%postun -n %{libname} -p /sbin/ldconfig
+%endif
+
+%clean
+rm -rf %{buildroot}
+
+%files -n %{libname}
+%defattr(-,root,root)
+%doc README LGPL
+%{_libdir}/libatasmart.so.%{major}*
+%{_sbindir}/skdump
+%{_sbindir}/sktest
+
+%files -n %{develname}
+%defattr(-,root,root)
+%doc blob-examples/SAMSUNG* blob-examples/ST* blob-examples/Maxtor* blob-examples/WDC* blob-examples/README
+%{_includedir}/atasmart.h
+%{_libdir}/libatasmart.so
+%{_libdir}/pkgconfig/libatasmart.pc
+
