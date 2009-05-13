@@ -4,7 +4,7 @@
 
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Name:		libatasmart
-Version:	0.10
+Version:	0.13
 Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Libraries
