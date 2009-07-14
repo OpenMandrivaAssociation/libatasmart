@@ -5,7 +5,7 @@
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Name:		libatasmart
 Version:	0.13
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://git.0pointer.de/?p=libatasmart.git;a=summary
@@ -28,6 +28,7 @@ health monitoring.
 %package -n	%{develname}
 Summary:	Development Files for libatasmart Client Development
 Group:		Development/C
+Provides:	libatasmart-devel = %version-%release
 Requires:	%libname = %version-%release
 
 %description -n	%{develname}
