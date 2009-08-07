@@ -1,17 +1,18 @@
-%define major 0
+%define major 4
 %define libname %mklibname atasmart %{major}
 %define develname %mklibname -d atasmart
 
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Name:		libatasmart
-Version:	0.13
-Release:	%mkrel 3
+Version:	0.14
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://git.0pointer.de/?p=libatasmart.git;a=summary
 Source0:	http://0pointer.de/public/libatasmart-%{version}.tar.gz
 BuildRequires:	libudev-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Conflicts:	%{_lib}atasmart0 < 0.14
 
 %description
 A small and lightweight parser library for ATA S.M.A.R.T. hard disk
@@ -62,12 +63,14 @@ find %{buildroot} \( -name *.a -o -name *.la \) -exec rm {} \;
 %clean
 rm -rf %{buildroot}
 
-%files -n %{libname}
-%defattr(-,root,root)
+%files
 %doc README LGPL
-%{_libdir}/libatasmart.so.%{major}*
 %{_sbindir}/skdump
 %{_sbindir}/sktest
+
+%files -n %{libname}
+%defattr(-,root,root)
+%{_libdir}/libatasmart.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root)
