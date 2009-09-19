@@ -78,4 +78,4 @@ rm -rf %{buildroot}
 %{_includedir}/atasmart.h
 %{_libdir}/libatasmart.so
 %{_libdir}/pkgconfig/libatasmart.pc
-
+%{_datadir}/vala/vapi/atasmart.vapi
