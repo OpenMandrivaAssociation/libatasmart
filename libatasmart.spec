@@ -14,6 +14,8 @@ BuildRequires:	libudev-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Conflicts:	%{_lib}atasmart0 < 0.14
 
+Patch0:		libatasmart-0.17-initmem.patch
+
 %description
 A small and lightweight parser library for ATA S.M.A.R.T. hard disk
 health monitoring.
@@ -36,8 +38,8 @@ Requires:	%libname = %version-%release
 Development files for libatasmart Client Development
 
 %prep
-
 %setup -q
+%patch0 -p1
 
 %build
 %configure2_5x \
