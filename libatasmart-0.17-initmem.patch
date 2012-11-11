@@ -1,0 +1,11 @@
+--- libatasmart-0.17/strpool.c.orig	2011-10-01 02:22:23.004901535 -0300
++++ libatasmart-0.17/strpool.c	2011-10-01 02:22:41.083978601 -0300
+@@ -417,7 +417,7 @@ static int parse(FILE *in, const char *f
+ 
+                                                 if (state == STATE_STRING && enabled) {
+                                                         struct item *i;
+-                                                        i = malloc(sizeof(struct item));
++                                                        i = calloc(1, sizeof(struct item));
+ 
+                                                         if (!i)
+                                                                 abort();
