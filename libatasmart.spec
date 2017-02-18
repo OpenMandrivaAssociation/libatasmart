@@ -1,16 +1,18 @@
-%define major	4
-%define libname	%mklibname atasmart %{major}
-%define devname	%mklibname -d atasmart
+%define major 4
+%define libname %mklibname atasmart %{major}
+%define devname %mklibname -d atasmart
 
 Summary:	ATA S.M.A.R.T. Disk Health Monitoring Library
 Name:		libatasmart
 Version:	0.19
-Release:	14
+Release:	15
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://git.0pointer.de/?p=libatasmart.git;a=summary
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.xz
 Patch0:		libatasmart-0.17-initmem.patch
+Patch1:		0001-Dont-test-undefined-bits.patch
+Patch2:		0002-Drop-our-own-many-bad-sectors-heuristic.patch
 BuildRequires:	pkgconfig(udev) >= 186
 Conflicts:	%{_lib}atasmart0 < 0.14
 
@@ -29,8 +31,8 @@ health monitoring.
 %package -n %{devname}
 Summary:	Development Files for libatasmart Client Development
 Group:		Development/C
-Provides:	%{name}-devel = %{version}-%{release}
-Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{EVRD}
+Requires:	%{libname} = %{EVRD}
 
 %description -n	%{devname}
 Development files for libatasmart Client Development
@@ -40,7 +42,7 @@ Development files for libatasmart Client Development
 %apply_patches
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static
 
 %make
@@ -62,4 +64,3 @@ Development files for libatasmart Client Development
 %{_libdir}/libatasmart.so
 %{_libdir}/pkgconfig/libatasmart.pc
 %{_datadir}/vala/vapi/atasmart.vapi
-
