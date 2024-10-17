@@ -8,7 +8,7 @@ Version:	0.19
 Release:	19
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://git.0pointer.de/?p=libatasmart.git;a=summary
+Url:		https://git.0pointer.de/?p=libatasmart.git;a=summary
 Source0:	http://0pointer.de/public/%{name}-%{version}.tar.xz
 Patch0:		libatasmart-0.17-initmem.patch
 Patch1:		0001-Dont-test-undefined-bits.patch
