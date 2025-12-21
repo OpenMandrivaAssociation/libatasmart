@@ -13,6 +13,11 @@ Source0:	http://0pointer.de/public/%{name}-%{version}.tar.xz
 Patch0:		libatasmart-0.17-initmem.patch
 Patch1:		0001-Dont-test-undefined-bits.patch
 Patch2:		0002-Drop-our-own-many-bad-sectors-heuristic.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(udev) >= 186
 Conflicts:	%{_lib}atasmart0 < 0.14
 
